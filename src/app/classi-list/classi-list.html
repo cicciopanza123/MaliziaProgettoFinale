@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header-scuola">
+    <h1>Istituti Scolastici</h1>
+    <p>Seleziona una classe per accedere al registro.</p>
+  </div>
+  <div class="griglia-classi">
+    @for (c of classi; track c.id_classe) {
+      <div class="classe-card" (click)="apriClasse(c.id_classe)">
+        <h2>{{ c.nome }} {{ c.sezione }}</h2>
+        <p>{{ c.indirizzo }}</p>
+      </div>
+    }
+  </div>
+</div>

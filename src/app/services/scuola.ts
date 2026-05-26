@@ -27,4 +27,18 @@ export class ScuolaService {
   getMaterie(): Observable<Materia[]> {
     return this.http.get<Materia[]>(`${this.apiUrl}/materie`);
   }
+   getStudente(id_studente: number): Observable<Studente> {
+    return this.http.get<Studente>(`${this.apiUrl}/studenti/${id_studente}`);
+  }
+  getVotiStudente(id_studente: number): Observable<Voto[]> {
+    return this.http.get<Voto[]>(`${this.apiUrl}/voti?id_studente=${id_studente}`);
+  }
+  getAssenzeStudente(id_studente: number): Observable<Assenza[]> {
+    return this.http.get<Assenza[]>(`${this.apiUrl}/assenze?id_studente=${id_studente}`);
+  }
+  aggiungiVoto(voto: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/voti`, voto);
+  }
+
 }
+

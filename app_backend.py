@@ -76,3 +76,61 @@ def get_docenti_classe(id_classe):
 def get_materie():
     sql = "SELECT id_materia, nome FROM materie"
     return jsonify(query_to_json(sql))
+
+@app.route('/api/studenti/<int:id_studente>', methods=['GET'])
+def get_studente_by_id(id_studente):
+    sql = "SELECT id_studente, cognome, nome, codice_fiscale, data_nascita, id_classe FROM studenti WHERE id_studente = %s"
+    res = query_to_json(sql, (id_studente,))
+    if len(res) > 0: return jsonify(res[0])
+    return jsonify({"error": "Studente non trovato"}), 404
+
+@app.route('/api/voti', methods=['GET'])
+def get_voti():
+    id_studente = request.args.get('id_studente')
+    if id_studente:
+        sql = "SELECT id_voto, valore, data, tipo_verifica, nota, id_studente, id_insegnamento FROM voti WHERE id_studente = %s ORDER BY data DESC"
+        return jsonify(query_to_json(sql, (id_studente,)))
+    return jsonify([])
+
+@app.route('/api/assenze', methods=['GET'])
+def get_assenze():
+    id_studente = request.args.get('id_studente')
+    if id_studente:
+        sql = "SELECT id_assenza, data, tipo, giustificata, nota, id_studente FROM assenze WHERE id_studente = %s ORDER BY data DESC"
+        return jsonify(query_to_json(sql, (id_studente,)))
+    return jsonify([])
+
+@app.route('/api/voti', methods=['POST'])
+def aggiungi_voto():
+    data_json = request.get_json()
+    valore = data_json.get('valore')
+    data_voto = data_json.get('data')
+    tipo_verifica = data_json.get('tipo_verifica')
+    nota = data_json.get('nota', None)
+    id_studente = data_json.get('id_studente')
+    id_insegnamento = data_json.get('id_insegnamento')
+
+    if not all([valore, data_voto, tipo_verifica, id_studente, id_insegnamento]):
+        return jsonify({"error": "Campi obbligatori mancanti"}), 400
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        sql = """
+        INSERT INTO voti (valore, data, tipo_verifica, nota, id_studente, id_insegnamento)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(sql, (valore, data_voto, tipo_verifica, nota, id_studente, id_insegnamento))
+        conn.commit()
+        return jsonify({"message": "Voto inserito con successo!", "id_voto": cursor.lastrowid}), 201
+    except Exception as e:
+        print(f"Errore inserimento voto: {e}")
+        return jsonify({"error": "Errore interno del database"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=300, debug=True)
+    

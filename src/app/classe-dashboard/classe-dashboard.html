@@ -1,0 +1,52 @@
+<div class="container" *ngIf="classeDettaglio">
+  <button class="btn-indietro" (click)="indietro()">- Torna all'Elenco Classi</button>
+  
+  <div class="dashboard-header">
+    <h1>{{ classeDettaglio.nome }} {{ classeDettaglio.sezione }}</h1>
+    <p>Indirizzo di Studio: {{ classeDettaglio.indirizzo }}</p>
+  </div>
+
+  <div class="tab-switcher">
+    <button class="tab-btn" [class.attivo]="vistaAttiva === 'studenti'" (click)="cambiaVista('studenti')">Studenti</button>
+    <button class="tab-btn" [class.attivo]="vistaAttiva === 'docenti'" (click)="cambiaVista('docenti')">Docenti</button>
+  </div>
+
+  <div class="dashboard-layout">
+    <ng-container *ngIf="vistaAttiva === 'studenti'">
+      <section class="card-panel">
+        <h3>Registro Alunni Iscritti</h3>
+        <table>
+          <thead>
+            <tr><th>Cognome</th><th>Nome</th><th>Codice Fiscale</th><th>Azioni</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of studenti">
+              <td>{{ s.cognome }}</td>
+              <td>{{ s.nome }}</td>
+              <td>{{ s.codice_fiscale }}</td>
+              <td><button (click)="guardaStudente(s.id_studente)">Vedi registro</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside class="card-panel">
+        <h3>Quadro Orario Settimanale</h3>
+        <div *ngFor="let o of orario">
+          <div>{{ o.giorno }} | {{ o.ora_inizio }} - {{ o.ora_fine }}</div>
+          <strong>{{ getNomeMateria(o.id_materia) }}</strong>
+          <small>{{ getNomeDocente(o.id_docente) }}</small>
+        </div>
+      </aside>
+    </ng-container>
+
+    <ng-container *ngIf="vistaAttiva === 'docenti'">
+      <section class="card-panel">
+        <h3>Docenti della Classe</h3>
+        <div *ngFor="let d of docenti">
+          <strong>{{ d.cognome }} {{ d.nome }}</strong> - {{ d.specializzazione }}
+        </div>
+      </section>
+    </ng-container>
+  </div>
+</div>

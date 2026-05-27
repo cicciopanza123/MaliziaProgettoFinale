@@ -1,4 +1,16 @@
 <div class="container">
+  <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd;">
+    <h3>Ricerca Rapida Alunno</h3>
+    <input type="text" [(ngModel)]="testoRicerca" (input)="avviaRicerca()" placeholder="Digita il nome o il cognome..." style="width: 100%; padding: 8px;">
+    
+    <div *ngIf="risultatiRicerca.length > 0" style="margin-top: 10px;">
+      <div *ngFor="let s of risultatiRicerca" style="padding: 5px 0; border-bottom: 1px solid #eee;">
+        <strong>{{ s.cognome }} {{ s.nome }}</strong> 
+        <button (click)="apriProfiloStudente(s.id_studente)">Apri Registro</button>
+      </div>
+    </div>
+  </div>
+
   <div class="header-scuola">
     <h1>Istituti Scolastici</h1>
     <p>Seleziona una classe per accedere al registro.</p>

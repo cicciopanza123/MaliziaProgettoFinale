@@ -130,7 +130,20 @@ def aggiungi_voto():
         cursor.close()
         conn.close()
 
+@app.route('/api/studenti/cerca', methods=['GET'])
+def cerca_studenti():
+    query = request.args.get('query', '')
+    if not query:
+        return jsonify([])
+    sql = """
+    SELECT id_studente, cognome, nome, codice_fiscale, data_nascita, id_classe
+    FROM studenti WHERE cognome LIKE %s OR nome LIKE %s
+    """
+    like_query = f"%{query}%"
+    return jsonify(query_to_json(sql, (like_query, like_query)))
+
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=300, debug=True)
+    app.run(host='0.0.0.0', port=3000, debug=True)
     

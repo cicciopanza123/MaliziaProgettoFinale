@@ -5,7 +5,7 @@ import { Classe, Studente, Insegnamento, Voto, Assenza, Docente, Materia } from 
 
 @Injectable({ providedIn: 'root' })
 export class ScuolaService {
-  private apiUrl = 'https://improved-parakeet-x5v77qpvwpww2vgw6-3000.app.github.dev/api';
+  private apiUrl = 'https://upgraded-capybara-97jrr45j9jgrfxvvx-3000.app.github.dev/api';
 
   constructor(private http: HttpClient) {}
 

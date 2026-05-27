@@ -39,6 +39,10 @@ export class ScuolaService {
   aggiungiVoto(voto: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/voti`, voto);
   }
+   cercaStudenti(query: string): Observable<Studente[]> {
+    return this.http.get<Studente[]>(`${this.apiUrl}/studenti/cerca?query=${query}`);
+  }
+
 
 }
 

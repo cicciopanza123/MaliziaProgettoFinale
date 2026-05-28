@@ -1,36 +1,41 @@
 <div class="container" *ngIf="studente">
   <button class="btn-indietro" (click)="tornaAllaClasse()">- Registro di Classe</button>
-  <div>
-    <h1>{{ studente.cognome }} {{ studente.nome }}</h1>
-    <p>Media Voti: <strong>{{ mediaVoti | number: '1.1-2' }}</strong></p>
-  </div>
-  
-  <div>
-    <h3>Valutazioni</h3>
-    <div *ngFor="let v of voti">
-      <span><strong>{{ v.valore }}</strong> ({{ v.tipo_verifica }} - {{ v.data | date:'dd/MM/yyyy' }})</span>
-      <p *ngIf="v.nota"><em>Nota: {{ v.nota }}</em></p>
+
+  <div class="profile-header">
+    <div>
+      <h1>{{ studente.cognome }} {{ studente.nome }}</h1>
+      <p>Media Voti: <strong>{{ mediaVoti | number: '1.1-2' }}</strong></p>
     </div>
   </div>
+  
+  <section class="evaluations">
+    <h3>Valutazioni</h3>
+    <div class="voti-list">
+      <div class="evaluation-item" *ngFor="let v of voti">
+        <span><strong>{{ v.valore }}</strong> ({{ v.tipo_verifica }} - {{ v.data | date:'dd/MM/yyyy' }})</span>
+        <p *ngIf="v.nota"><em>Nota: {{ v.nota }}</em></p>
+      </div>
+    </div>
+  </section>
 
-  <div style="margin-top: 20px; border: 1px solid #ccc; padding: 15px;">
+  <section class="form-panel">
     <h3>📝 Registra Nuova Valutazione</h3>
     <form (ngSubmit)="salvaNuovoVoto()">
       <label>Voto:</label>
-      <input type="number" min="1" max="10" step="0.5" [(ngModel)]="formValore" name="valore" required><br>
+      <input type="number" min="1" max="10" step="0.5" [(ngModel)]="formValore" name="valore" required>
       <label>Data:</label>
-      <input type="date" [(ngModel)]="formData" name="data" required><br>
+      <input type="date" [(ngModel)]="formData" name="data" required>
       <label>Tipo:</label>
       <select [(ngModel)]="formTipoVerifica" name="tipo_verifica">
         <option value="Scritto">Scritto</option>
         <option value="Orale">Orale</option>
-      </select><br>
+      </select>
       <label>ID Insegnamento:</label>
-      <input type="number" [(ngModel)]="formIdInsegnamento" name="id_insegnamento" required><br>
+      <input type="number" [(ngModel)]="formIdInsegnamento" name="id_insegnamento" required>
       <label>Nota:</label>
-      <input type="text" [(ngModel)]="formNota" name="nota"><br>
+      <input type="text" [(ngModel)]="formNota" name="nota">
       <button type="submit">➕ Assegna Voto</button>
     </form>
-  </div>
+  </section>
 </div>
 

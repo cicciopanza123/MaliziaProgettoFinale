@@ -1,11 +1,11 @@
 <div class="container">
-  <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd;">
+  <div class="search-panel">
     <h3>Ricerca Rapida Alunno</h3>
-    <input type="text" [(ngModel)]="testoRicerca" (input)="avviaRicerca()" placeholder="Digita il nome o il cognome..." style="width: 100%; padding: 8px;">
+    <input type="text" [(ngModel)]="testoRicerca" (input)="avviaRicerca()" placeholder="Digita il nome o il cognome...">
     
-    <div *ngIf="risultatiRicerca.length > 0" style="margin-top: 10px;">
-      <div *ngFor="let s of risultatiRicerca" style="padding: 5px 0; border-bottom: 1px solid #eee;">
-        <strong>{{ s.cognome }} {{ s.nome }}</strong> 
+    <div *ngIf="risultatiRicerca.length > 0" class="search-results">
+      <div class="search-result" *ngFor="let s of risultatiRicerca">
+        <strong>{{ s.cognome }} {{ s.nome }}</strong>
         <button (click)="apriProfiloStudente(s.id_studente)">Apri Registro</button>
       </div>
     </div>

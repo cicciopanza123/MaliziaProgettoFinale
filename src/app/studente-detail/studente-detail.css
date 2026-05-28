@@ -1,0 +1,101 @@
+/* Styles for studente-detail component */
+
+.btn-indietro {
+	margin-bottom: 20px;
+}
+
+.profile-header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 18px;
+	margin-bottom: 22px;
+}
+
+.profile-header h1 {
+	font-size: 1.9rem;
+	margin-bottom: 4px;
+}
+
+.profile-header p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 1rem;
+}
+
+.evaluations {
+	background: var(--surface);
+	padding: 22px;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+}
+
+.evaluations h3 {
+	margin-top: 0;
+}
+
+.evaluation-item {
+	padding: 16px 0;
+	border-bottom: 1px solid #e8eff5;
+}
+
+.evaluation-item:last-child {
+	border-bottom: none;
+}
+
+.evaluation-item span {
+	display: block;
+	font-size: 1rem;
+}
+
+.evaluation-item p {
+	margin: 6px 0 0;
+	color: var(--muted);
+}
+
+.form-panel {
+	margin-top: 24px;
+	background: var(--surface);
+	padding: 22px;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+}
+
+.form-panel h3 {
+	margin-top: 0;
+}
+
+.form-panel label {
+	display: block;
+	margin-top: 16px;
+	color: var(--muted);
+	font-weight: 700;
+}
+
+.form-panel input,
+.form-panel select {
+	margin-top: 8px;
+}
+
+.form-panel button {
+	margin-top: 18px;
+}
+
+.voti-list {
+	margin-top: 12px;
+}
+
+.voti-list div {
+	padding: 14px 0;
+	border-bottom: 1px solid #eef2f7;
+}
+
+.voti-list div:last-child {
+	border-bottom: none;
+}
+
+.voti-list strong {
+	color: var(--accent-600);
+}
+

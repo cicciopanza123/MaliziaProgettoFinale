@@ -1,0 +1,102 @@
+/* Styles for classi-list component */
+
+.search-panel {
+	background: var(--surface);
+	padding: 20px;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+	margin-bottom: 22px;
+}
+
+.search-panel h3 {
+	margin: 0 0 14px 0;
+	color: var(--accent-600);
+}
+
+.search-panel input {
+	margin-top: 4px;
+}
+
+.search-results {
+	margin-top: 16px;
+	display: grid;
+	gap: 10px;
+}
+
+.search-result {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px;
+	border-radius: 14px;
+	background: var(--surface-secondary);
+}
+
+.search-result strong {
+	font-size: 0.95rem;
+}
+
+.search-result button {
+	padding: 8px 12px;
+	border-radius: 12px;
+	border: none;
+	background: var(--accent);
+	color: white;
+}
+
+.header-scuola {
+	margin-bottom: 20px;
+}
+
+.header-scuola h1 {
+	font-size: 2rem;
+	color: var(--accent-600);
+	margin-bottom: 6px;
+}
+
+.header-scuola p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 1rem;
+}
+
+.griglia-classi {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 18px;
+}
+
+.classe-card {
+	background: var(--surface);
+	padding: 20px;
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-soft);
+	cursor: pointer;
+	transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+	border: 1px solid transparent;
+}
+
+.classe-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 18px 34px rgba(15, 23, 42, 0.10);
+	border-color: rgba(30, 111, 184, 0.12);
+}
+
+.classe-card h2 {
+	margin: 0 0 8px 0;
+	font-size: 1.1rem;
+}
+
+.classe-card p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.96rem;
+}
+
+@media (max-width: 520px) {
+	.griglia-classi {
+		grid-template-columns: 1fr;
+	}
+}
+
